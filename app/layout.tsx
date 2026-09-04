@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <ClerkProvider appearance={{ theme: shadcn }}>
+        <ClerkProvider appearance={{ theme: shadcn }} dynamic>
           {children}
           <Toaster />
         </ClerkProvider>
