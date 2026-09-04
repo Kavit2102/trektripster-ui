@@ -3,6 +3,7 @@ import { MessageSquareText, Search, SendHorizontal } from 'lucide-react';
 import { useState } from 'react'
 import { toast } from './ui/toast';
 import { Button } from './ui/button';
+import ReactMarkdown from 'react-markdown';
 
 type Message = {
     content: string
@@ -84,7 +85,9 @@ export default function ChatInterface({ documents, starterQuestions, handleSignI
                             <Search className="size-4" />
                         </button>
                     </header>
-                    <div className="flex-1 space-y-5 overflow-y-auto p-5">
+
+                    {/* Messages container */}
+                    <div className="min-h-0 flex-1 space-y-5 overflow-y-auto p-5">
                         <div className="max-w-[88%] rounded-2xl rounded-tl-sm bg-secondary px-4 py-3 text-sm leading-6">
                             Hi there. I&apos;m ready to help you explore your documents. What would you like to know?
                         </div>
@@ -92,7 +95,42 @@ export default function ChatInterface({ documents, starterQuestions, handleSignI
                         {
                             messages?.map((message, index) =>
                                 <div key={`${message?.content}-${index}`} className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-6 ${message.role === 'user' ? 'ml-auto rounded-tr-sm bg-primary text-primary-foreground' : 'rounded-tl-sm bg-secondary'}`}>
-                                    {message?.content}
+                                    {message.role === 'assistant' ? (
+                                        <ReactMarkdown
+                                            components={{
+                                                // Headings
+                                                h1: ({ children }) => <h1 className="mb-2 text-base font-bold">{children}</h1>,
+                                                h2: ({ children }) => <h2 className="mb-2 text-sm font-bold">{children}</h2>,
+                                                h3: ({ children }) => <h3 className="mb-1 text-sm font-semibold">{children}</h3>,
+                                                // Paragraphs
+                                                p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                                // Lists
+                                                ul: ({ children }) => <ul className="mb-2 ml-4 list-disc space-y-1 last:mb-0">{children}</ul>,
+                                                ol: ({ children }) => <ol className="mb-2 ml-4 list-decimal space-y-1 last:mb-0">{children}</ol>,
+                                                li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+                                                // Inline
+                                                strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+                                                em: ({ children }) => <em className="italic">{children}</em>,
+                                                // Code
+                                                code: ({ children }) => (
+                                                    <code className="rounded bg-black/10 px-1 py-0.5 font-mono text-xs">{children}</code>
+                                                ),
+                                                pre: ({ children }) => (
+                                                    <pre className="mb-2 overflow-x-auto rounded-lg bg-black/10 p-3 font-mono text-xs last:mb-0">{children}</pre>
+                                                ),
+                                                // Blockquote
+                                                blockquote: ({ children }) => (
+                                                    <blockquote className="mb-2 border-l-2 border-current pl-3 opacity-70 last:mb-0">{children}</blockquote>
+                                                ),
+                                                // Horizontal rule
+                                                hr: () => <hr className="my-2 border-current opacity-20" />,
+                                            }}
+                                        >
+                                            {message.content}
+                                        </ReactMarkdown>
+                                    ) : (
+                                        message.content
+                                    )}
                                 </div>
                             )
                         }
@@ -124,6 +162,7 @@ export default function ChatInterface({ documents, starterQuestions, handleSignI
                                 </div>
                             </div>}
                     </div>
+
                     <div className="border-t border-border p-4"><div className="flex items-end gap-2 rounded-xl border border-border bg-card p-2 shadow-sm focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/10">
 
                         {/* <button className="mb-0.5 rounded-lg p-2 text-muted-foreground transition hover:bg-secondary hover:text-foreground" aria-label="Attach a document" onClick={addDocument}>
