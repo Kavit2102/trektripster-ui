@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <ClerkProvider appearance={{ theme: shadcn }} publishableKey={process.env.NEXT_CLERK_PUBLISHABLE_KEY || ''}>
+        <ClerkProvider appearance={{ theme: shadcn }}>
           {children}
           <Toaster />
         </ClerkProvider>
