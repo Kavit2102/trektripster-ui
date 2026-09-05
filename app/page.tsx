@@ -61,30 +61,6 @@ export default function Page() {
         <ChatInterface documents={documents} starterQuestions={starterQuestions} handleSignIn={handleSignIn} />
       </section>
 
-      {/* How It Works */}
-      {/* <section id="how-it-works" className="border-t border-border bg-secondary/45 px-6 py-12 lg:px-10"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-center">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">A better way to search</p>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight">From document pile to clear next step.</h2>
-        </div>
-
-        <div className="flex gap-8 text-sm text-muted-foreground">
-          <div>
-            <span className="mb-1 block font-mono text-xl font-semibold text-foreground">01</span>
-            Upload your files
-          </div>
-          <div>
-            <span className="mb-1 block font-mono text-xl font-semibold text-foreground">02</span>
-            Ask in plain language
-          </div>
-          <div>
-            <span className="mb-1 block font-mono text-xl font-semibold text-foreground">03</span>
-            Move with confidence
-          </div>
-        </div>
-        
-      </div>
-      </section> */}
 
       <footer id="security" className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 text-xs text-muted-foreground lg:px-10">
         <span className="flex items-center gap-2">

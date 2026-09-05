@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs'
+import { SignInButton, SignUpButton, UserButton, Show } from '@clerk/nextjs'
 import Image from 'next/image'
 import { Button } from './ui/button'
 
@@ -19,7 +19,7 @@ export default function Navbar() {
 
             {/* User Authentication */}
             <div className="flex items-center gap-2">
-                <SignedOut>
+                <Show when="signed-out">
                     <SignInButton mode="modal">
                         <Button variant="ghost" className="px-3 text-sm text-muted-foreground hover:text-foreground">
                             Sign in
@@ -28,10 +28,10 @@ export default function Navbar() {
                     <SignUpButton mode="modal">
                         <Button className="px-3 text-sm">Sign up</Button>
                     </SignUpButton>
-                </SignedOut>
-                <SignedIn>
+                </Show>
+                <Show when="signed-in">
                     <UserButton />
-                </SignedIn>
+                </Show>
             </div>
         </nav>
     )
