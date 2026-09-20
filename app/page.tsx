@@ -16,11 +16,6 @@ const starterQuestions: string[] = [
   'Provide me some places to visit in Madhya Pradesh for a 3-day trip',
 ]
 
-type Message = {
-  content: string
-  role: 'user' | 'assistant'
-}
-
 const documents: { name: string; meta: string; color: string }[] = [
   { name: '/trek-tripster.png', meta: '2.4 MB · 12 pages', color: 'bg-cyan-100 text-cyan-800' },
 ]
@@ -39,12 +34,6 @@ export default function Page() {
       })
     }
   }
-
-  // useEffect(() => {
-  //   if (!isSignedIn) {
-  //     setMessages([])
-  //   }
-  // }, [isSignedIn])
 
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
