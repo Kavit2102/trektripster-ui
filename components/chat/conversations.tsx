@@ -45,7 +45,7 @@ export default function Conversations() {
         } finally {
             setIsLoading(false)
         }
-    }, [userId, conversationId, conversationRefreshKey])
+    }, [userId, conversationRefreshKey])
 
     useEffect(() => {
         loadConversations()
