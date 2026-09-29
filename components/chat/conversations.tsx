@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { Conversation } from "@/interfaces";
 import { getConversations } from "@/api/conversation.api";
-import { History, MessageSquareText } from "lucide-react";
+import { History, MessageSquareText, X } from "lucide-react";
 import { useConversation } from "@/context/conversation.context";
 import NewConversation from "./new-conversation";
 
-export default function Conversations() {
+export default function Conversations({ onClose }: { onClose: () => void }) {
 
     const { userId } = useAuth()
     const [conversations, setConversations] = useState<Conversation[]>([])
@@ -52,7 +52,7 @@ export default function Conversations() {
     }, [loadConversations])
 
     return (
-        <aside className="flex min-h-0 w-full flex-col overflow-hidden rounded-tl-2xl border-r bg-background md:w-56 md:shrink-0 lg:w-60">
+        <aside className="flex h-full min-h-0 w-full flex-col overflow-hidden border-r bg-background">
             <header className="flex shrink-0 items-center gap-2.5 border-b border-border px-4 py-4">
                 <span className="grid size-8 place-items-center rounded-lg bg-primary/10 text-primary">
                     <History className="size-4" />
@@ -64,7 +64,15 @@ export default function Conversations() {
                         Your recent conversations
                     </p>
                 </div>
-                <NewConversation />
+                <NewConversation onCreate={onClose} />
+                <button
+                    type="button"
+                    aria-label="Close conversation history"
+                    onClick={onClose}
+                    className="rounded-md p-2 text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+                >
+                    <X className="size-4" />
+                </button>
             </header>
 
             <div className="min-h-0 flex-1 overflow-y-auto p-2">
@@ -80,7 +88,10 @@ export default function Conversations() {
                             return (
                                 <button
                                     key={conversation?.conversation_id}
-                                    onClick={() => setConversationId(conversation?.conversation_id)}
+                                    onClick={() => {
+                                        setConversationId(conversation?.conversation_id)
+                                        onClose()
+                                    }}
                                     type="button"
                                     role="listitem"
                                     aria-pressed={isActive}
