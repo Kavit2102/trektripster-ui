@@ -2,14 +2,21 @@ import { addMessage, getMessages } from "@/api/message.api";
 import { useConversation } from "@/context/conversation.context";
 import { type Message, type Messages } from "@/interfaces";
 import { useAuth } from "@clerk/nextjs";
-import { MessageSquareText, Search, SendHorizontal } from "lucide-react";
+import { Menu, MessageSquareText, Search, SendHorizontal } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import ReactMarkdown from 'react-markdown';
 import { toast } from "../ui/toast";
 import { Button } from "../ui/button";
 import { v4 as uuid4 } from "uuid"
 
-export default function Messages({ documents }: Messages) {
+export default function Messages({
+    documents,
+    isConversationHistoryOpen,
+    onOpenConversations,
+}: Messages & {
+    isConversationHistoryOpen: boolean
+    onOpenConversations: () => void
+}) {
 
     const [isGenerating, setIsGenerating] = useState(false)
     const [messages, setMessages] = useState<Message[]>([])
@@ -114,6 +121,16 @@ export default function Messages({ documents }: Messages) {
         <>
             <header className="flex shrink-0 items-center justify-between gap-2 border-b border-border px-3 py-3 sm:px-5 sm:py-4">
                 <div className="flex items-center gap-2.5">
+                    <button
+                        type="button"
+                        aria-label="Open conversation history"
+                        aria-controls="conversation-history"
+                        aria-expanded={isConversationHistoryOpen}
+                        onClick={onOpenConversations}
+                        className="grid size-9 shrink-0 place-items-center rounded-lg text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+                    >
+                        <Menu className="size-5" />
+                    </button>
                     <span className="grid size-8 place-items-center rounded-lg bg-primary/10 text-primary">
                         <MessageSquareText className="size-4" />
                     </span>
@@ -124,12 +141,12 @@ export default function Messages({ documents }: Messages) {
                         </p>
                     </div>
                 </div>
-                <button
+                {/* <button
                     className="rounded-md p-2 text-muted-foreground transition hover:bg-secondary hover:text-foreground"
                     aria-label="Search documents"
                 >
                     <Search className="size-4" />
-                </button>
+                </button> */}
             </header>
 
             {/* Messages container */}
