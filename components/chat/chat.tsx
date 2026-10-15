@@ -41,6 +41,7 @@ export default function Chat({ documents, handleSignIn }: ChatInterfaceProps) {
                                 documents={documents}
                                 isConversationHistoryOpen={isConversationHistoryOpen}
                                 onOpenConversations={() => setIsConversationHistoryOpen(true)}
+                                handleSignIn={handleSignIn}
                             />
                             {/* <Input /> */}
                         </div>

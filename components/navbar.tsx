@@ -9,12 +9,12 @@ export default function Navbar() {
             <a
                 href='/'
                 className="flex min-w-0 items-center gap-2.5 font-semibold tracking-tight"
-                aria-label="Trektripster home"
+                aria-label="Community home"
             >
                 <span className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground">
                     <Image src="/trek-tripster.png" alt="trek-tripster" width={80} height={80} />
                 </span>
-                <span className="truncate text-sm tracking-wider sm:text-base">TrekTripster AI</span>
+                <span className="truncate text-sm tracking-wider sm:text-base">Community AI</span>
             </a>
 
             {/* User Authentication */}

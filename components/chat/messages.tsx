@@ -13,6 +13,7 @@ export default function Messages({
     documents,
     isConversationHistoryOpen,
     onOpenConversations,
+    handleSignIn
 }: Messages & {
     isConversationHistoryOpen: boolean
     onOpenConversations: () => void
@@ -26,9 +27,8 @@ export default function Messages({
     const { userId } = useAuth()
 
     const starterQuestions: string[] = [
-        'Provide me information about upcoming trips',
-        // 'What are the top 3 destinations for this summer?',
-        'Provide me some places to visit in Madhya Pradesh for a 3-day trip',
+        'Provide me information about the community',
+        'When would be the next community event?',
     ]
 
     async function chatDocument(question: string): Promise<void> {
@@ -36,7 +36,7 @@ export default function Messages({
 
         try {
             if (!userId) {
-                // handleSignIn()
+                handleSignIn()
                 return
             }
 
@@ -135,7 +135,7 @@ export default function Messages({
                         <MessageSquareText className="size-4" />
                     </span>
                     <div>
-                        <p className="text-sm font-semibold">Ask TrekTripster AI</p>
+                        <p className="text-sm font-semibold">Ask Community AI</p>
                         <p className="text-[11px] text-muted-foreground">
                             {documents?.length} sources connected
                         </p>
@@ -281,7 +281,7 @@ export default function Messages({
                     </Button>
 
                 </div>
-                <p className="mt-2 text-center text-[9px] leading-4 text-muted-foreground sm:text-[10px]">TrekTripster AI can make mistakes. Check important information in the source.</p>
+                <p className="mt-2 text-center text-[9px] leading-4 text-muted-foreground sm:text-[10px]">Community AI can make mistakes. Check important information in the source.</p>
             </div>
         </>
     )

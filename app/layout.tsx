@@ -6,8 +6,8 @@ import './globals.css'
 import { Toaster } from '@/components/ui/toast'
 
 export const metadata: Metadata = {
-  title: 'TrekTripster AI | Your Travel Companion',
-  description: 'TrekTripster AI is your ultimate travel companion, powered by advanced AI technology. Get personalized travel recommendations, plan your trips, and explore new destinations with ease. Start your journey today!',
+  title: 'Community AI | Your AI Companion',
+  description: 'Community AI is your ultimate travel companion, powered by advanced AI technology. Get personalized travel recommendations, plan your trips, and explore new destinations with ease. Start your journey today!',
   icons: {
     icon: [
       {

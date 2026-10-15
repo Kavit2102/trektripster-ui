@@ -20,19 +20,16 @@ export default function Input() {
     async function chatDocument(question: string): Promise<void> {
         try {
             if (!userId) {
-                // handleSignIn()
                 return
             }
-
-            // console.log('hiiii')
-
-            // if (!conversationId) return
 
             const trimmed = question?.trim()
             if (!trimmed) return
 
             setQuestion('')
             setIsGenerating(true)
+
+            console.log('conversationId', conversationId)
 
             const response = await addMessage(trimmed, conversationId?.toString() ?? uuid4()?.toString(), userId)
             console.log(response?.content)
@@ -68,7 +65,7 @@ export default function Input() {
                 </Button>
 
             </div>
-            <p className="mt-2 text-center text-[9px] leading-4 text-muted-foreground sm:text-[10px]">TrekTripster AI can make mistakes. Check important information in the source.</p>
+            <p className="mt-2 text-center text-[9px] leading-4 text-muted-foreground sm:text-[10px]">Community AI can make mistakes. Check important information in the source.</p>
         </div>
     )
 }

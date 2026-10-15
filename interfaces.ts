@@ -22,7 +22,7 @@ export interface Message {
 }
 export interface Messages {
     documents: { name: string; meta: string; color: string }[]
-    // messages: Message[]
+    handleSignIn: () => void
 }
 
 export interface ConversationContextValue {

@@ -48,7 +48,7 @@ export default function Page() {
       <footer id="security" className="mx-auto flex w-full max-w-7xl flex-col items-start gap-3 px-4 py-6 text-xs text-muted-foreground sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:px-6 lg:px-10">
         <span className="flex items-center gap-2">
           <Copyright className="size-3.5" />
-          TrekTripster AI. All rights reserved.
+          Community AI. All rights reserved.
         </span>
         <span className="flex items-center gap-2">
           <FolderOpen className="size-3.5" />
